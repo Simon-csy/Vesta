@@ -1,58 +1,92 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div id="app">
+    <a href="https://github.com/luyilin/vue-cute-timeline" class="github-corner"
+       aria-label="View source on Github">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:lightblue; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+           aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+    <div class="demo">
+      <div class="demo-them light">
+        <timeline timeline-theme="lightblue">
+          <timeline-title>2018</timeline-title>
+          <timeline-item bg-color="#9dd8e0" font-color="#e166ab">Welcome to the new year!</timeline-item>
+          <timeline-item :hollow="true" bg-color="#e6b6b0">My first 100 stars on Github 🎉</timeline-item>
+          <timeline-item bg-color="#b0e6d1">keep going</timeline-item>
+          <timeline-title bg-color="#f2d7e1">2017</timeline-title>
+          <timeline-item bg-color="#b0e6d1" icon-size="small">icon small size</timeline-item>
+          <timeline-item bg-color="#b0e6d1" icon-size="medium">icon medium size</timeline-item>
+          <timeline-item bg-color="#b0e6d1" icon-size="large">icon large size</timeline-item>
+          <timeline-item>
+            <p>I wrote <a href="https://github.com/luyilin/Aoba">Aoba</a></p>
+            <p class="append">A tool to create a lovely resume just with a config file.</p>
+          </timeline-item>
+          <timeline-item line-color="#a6ade4">
+            <p>And <a href="https://github.com/luyilin/Maltose">Maltose</a></p>
+            <p class="append">A cute emoticon and emoji keyboard which can generate random emoticon or emoji and no xss.</p>
+          </timeline-item>
+        </timeline>
+      </div>
+      <div class="demo-theme dark">
+        <timeline timeline-theme="white" timeline-bg="#3a3939">
+          <timeline-title font-color="#fff">2018</timeline-title>
+          <timeline-item bg-color="#9dd8e0" font-color="#e166ab">Welcome to the new year!</timeline-item>
+          <timeline-item :hollow="true" font-color="#fff">My first 100 stars on Github 🎉</timeline-item>
+          <timeline-item bg-color="#b0e6d1" font-color="#fff">keep going</timeline-item>
+          <timeline-title bg-color="#f2d7e1" font-color="#fff">2017</timeline-title>
+          <timeline-item bg-color="#b0e6d1" font-color="#fff" icon-size="small">icon small size</timeline-item>
+          <timeline-item bg-color="#b0e6d1" font-color="#fff" icon-size="medium">icon medium size</timeline-item>
+          <timeline-item bg-color="#b0e6d1" font-color="#fff" icon-size="large">icon large size</timeline-item>
+          <timeline-item>
+            <p style="color: #fff;">I wrote <a href="https://github.com/luyilin/Aoba">Aoba</a></p>
+            <p style="color: #fff;" class="append">A tool to create a lovely resume just with a config file.</p>
+          </timeline-item>
+          <timeline-item line-color="#a6ade4">
+            <p style="color: #fff;">And <a href="https://github.com/luyilin/Maltose">Maltose</a></p>
+            <p style="color: #fff;" class="append">A cute emoticon and emoji keyboard which can generate random emoticon or emoji and no xss.</p>
+          </timeline-item>
+        </timeline>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { Timeline, TimelineItem, TimelineTitle } from 'vue-cute-timeline'
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  components: {
+    Timeline,
+    TimelineItem,
+    TimelineTitle
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style>
+  .append {
+    font-size: .8em;
+    margin-top: 3px;
+    color: #646C7C;
+  }
+
+  a {
+    color: #bf6dcf;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .icon-heart {
+    width: 20px;
+  }
+
+  .demo {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 1rem;
+  }
+
+  .demo-theme.dark {
+    background: #3a3939;
+  }
+
+  .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
 </style>
