@@ -1,52 +1,65 @@
 <template>
-  <v-timeline side="end">
+  <v-timeline align="start">
     <v-timeline-item
-      v-for="item in items"
-      :key="item.id"
-      :dot-color="item.color"
+      v-for="(year, i) in years"
+      :key="i"
+      :dot-color="year.color"
       size="small"
     >
-      <v-alert
-        :value="true"
-        :color="item.color"
-        :icon="item.icon"
-      >
-        Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
-      </v-alert>
+      <template v-slot:opposite>
+        <div
+          :class="`pt-1 headline font-weight-bold text-${year.color}`"
+          v-text="year.year"
+        ></div>
+      </template>
+      <div>
+        <h2 :class="`mt-n1 headline font-weight-light mb-4 text-${year.color}`">
+          {{year.title}}
+        </h2>
+        <div>
+          {{year.content}}
+        </div>
+      </div>
     </v-timeline-item>
   </v-timeline>
 </template>
 
 <script>
-import { createApp } from 'vue'
-import App from './App.vue'
-
 // Vuetify
 import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
-const vuetify = createVuetify({
-  components,
-  directives,
-})
-
-createApp(App).use(vuetify).mount('#app')
-
 
 export default {
     data: () => ({
-      items: [
+      years: [
         {
-          id: 1,
-          color: 'info',
-          icon: 'mdi-information',
+          title:'title1',
+          color: 'cyan',
+          year: '1960',
+          content:'test1',
         },
         {
-          id: 2,
-          color: 'error',
-          icon: 'mdi-alert-circle',
+          title:'title2',
+          color: 'green',
+          year: '1970',
+          content:'test1',
+        },
+        {
+          title:'title3',
+          color: 'pink',
+          year: '1980',
+          content:'test2',
+        },
+        {
+          title:'title4',
+          color: 'amber',
+          year: '1990',
+          content:'test3',
+        },
+        {
+          title:'title5',
+          color: 'orange',
+          year: '2000',
+          content:'test4',
         },
       ],
     }),

@@ -13,20 +13,3 @@ const vuetify = createVuetify({
 })
 
 createApp(App).use(vuetify).mount('#app')
-
-
-export default {
-    data: () => ({
-        items: [{
-                id: 1,
-                color: 'info',
-                icon: 'mdi-information',
-            },
-            {
-                id: 2,
-                color: 'error',
-                icon: 'mdi-alert-circle',
-            },
-        ],
-    }),
-}
