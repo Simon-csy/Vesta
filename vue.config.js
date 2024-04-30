@@ -4,4 +4,13 @@ module.exports = defineConfig({
     assetsDir: './',
     publicPath: './',
     transpileDependencies: true,
+    devServer: {
+        proxy: {
+          '/ceres': {
+            target: 'https://www.simonland.me',
+            changeOrigin: true,
+            pathRewrite: { '^/ceres/api': '/ceres/api' }
+          }
+        }
+      }
 })

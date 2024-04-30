@@ -24,44 +24,37 @@
   </v-timeline>
 </template>
 
+
 <script>
 // Vuetify
 import 'vuetify/styles'
 
 export default {
-    data: () => ({
-      years: [
-        {
-          title:'title1',
-          color: 'cyan',
-          year: '1960',
-          content:'test1',
-        },
-        {
-          title:'title2',
-          color: 'green',
-          year: '1970',
-          content:'test1',
-        },
-        {
-          title:'title3',
-          color: 'pink',
-          year: '1980',
-          content:'test2',
-        },
-        {
-          title:'title4',
-          color: 'amber',
-          year: '1990',
-          content:'test3',
-        },
-        {
-          title:'title5',
-          color: 'orange',
-          year: '2000',
-          content:'test4',
-        },
-      ],
-    }),
+  data() {
+    return {
+      years: []
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const response = await fetch('https://www.simonland.me/api/game', {
+          mode: 'no-cors'
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        console.log(data)
+        this.years = data; // Assuming your API returns data in the same structure as your existing 'years' array
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+  }
   }
 </script>
+
