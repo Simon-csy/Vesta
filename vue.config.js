@@ -12,6 +12,7 @@ module.exports = defineConfig({
         changeOrigin: true,
         pathRewrite: { '^/ceres/api': '/ceres/api' }
       }
-    }
+    },
+    port: 8000
   }
 });
