@@ -1,20 +1,19 @@
 <template>
   <v-timeline align="start">
     <v-timeline-item
-      v-for="(entry, i) in timelineData"
+      v-for="(entry, i) in sortedTimelineData"
       :key="i"
       :dot-color="entry.color"
       size="small"
+      :class="{'text-right': i % 2 !== 0, 'text-left': i % 2 === 0}"
     >
-      <template v-slot:opposite>
-        <div :class="`pt-1 headline font-weight-bold text-${entry.color}`">
+      <div>
+        <span :class="`pt-1 headline font-weight-bold text-${entry.color}`">
           {{ formatDate(entry.start) }} ~ {{ formatDate(entry.end) }}
-        </div>
-      </template>
-      <div :class="['text-center']">
-        <h2 :class="`mt-n1 headline font-weight-light mb-4 text-${entry.color}`">
+        </span>
+        <span :class="`ml-2 headline font-weight-light text-${getSecondaryColor(entry.color)}`">
           {{ entry.game.name }}
-        </h2>
+        </span>
       </div>
     </v-timeline-item>
   </v-timeline>
@@ -26,9 +25,14 @@ import { format } from 'date-fns';
 export default {
   data() {
     return {
-      timelineData: [],  // Ensure timelineData is defined here
+      timelineData: [],
       previousColor: null
     };
+  },
+  computed: {
+    sortedTimelineData() {
+      return [...this.timelineData].sort((a, b) => new Date(b.start) - new Date(a.start));
+    }
   },
   mounted() {
     this.fetchData();
@@ -46,7 +50,7 @@ export default {
           start: item.start,
           end: item.end,
           game: item.game,
-          color: this.getRandomColor()  // Assign a random color
+          color: this.getRandomColor()
         }));
         console.log('Mapped timelineData:', this.timelineData);
       } catch (error) {
@@ -59,26 +63,34 @@ export default {
     getRandomColor() {
       const colors = ['red', 'blue', 'green', 'orange', 'purple'];
       let newColor = this.previousColor;
-      // Keep selecting a random color until it's different from the previous one
       while (newColor === this.previousColor) {
         newColor = colors[Math.floor(Math.random() * colors.length)];
       }
       this.previousColor = newColor;
       return newColor;
     },
-    isLeftSide(entry) {
-      // Return true if the entry should appear on the left side of the timeline
-      // You can adjust the condition based on your specific criteria
-      // For example, you might check if the entry index is even or odd
-      // Here, I'll simply check if the entry index is divisible by 2
-      return this.timelineData.indexOf(entry) % 2 === 0;
+    getSecondaryColor(primaryColor) {
+      const colorPairs = {
+        red: 'blue',
+        blue: 'green',
+        green: 'orange',
+        orange: 'purple',
+        purple: 'red'
+      };
+      return colorPairs[primaryColor] || 'black';
     }
   }
 }
 </script>
 
 <style scoped>
-.text-center {
+.text-right {
   text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.ml-2 {
+  margin-left: 8px;
 }
 </style>
